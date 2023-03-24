@@ -1,0 +1,62 @@
+. {
+  margin: auto;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 5% 10%;
+  background-color: #fcfcfc;
+  font-family: "Roboto", sans-serif;
+}
+
+h1 {
+  color: rgb(83, 137, 209);
+  font-family: "Fredoka", sans-serif;
+}
+
+#txt_input {
+  width: 100%;
+  display: inline-block;
+  font-family: "Roboto", sans-serif;
+  padding: 6px;
+  font-size: 1.2em;
+  border-radius: 0.5em;
+}
+
+#btn_Submit {
+  border-radius: 0.5em;
+  background-color: rgb(83, 137, 209);
+  padding: 6px 12px;
+  font-family: "Fredoka", sans-serif;
+  font-size: 1.2em;
+  color: white;
+  font-weight: bold;
+  border-color: transparent;
+  margin-top: 5px;
+  float: right;
+}
+
+h4 {
+  margin-top: 1.2em;
+}
+
+.summaryText {
+  display: inline;
+  border-bottom: 3px solid rgb(83, 137, 209);
+}
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: rgb(83, 137, 209);
+  color: white;
+  text-align: center;
+}
+
+.devName {
+  font-family: "Fredoka", sans-serif;
+  letter-spacing: 0.1rem;
+  font-weight: 600;
+}

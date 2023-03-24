@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Summarizer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka&family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../static/style.css">
+</head>
+
+<body>
+    <div>
+
+        <h1 id="h1_title_text">Text Summarizer</h1>
+        <form method="post" accept-charset="utf-8" name="Modelform">
+
+            <textarea rows="5" type="text" name="txt_input" placeholder="Enter text to summarize" id="txt_input"
+                minlength="1"></textarea>
+
+            <button type="submit" id="btn_Submit" onclick="sendData()">Get summary</button>
+            <br>
+            <br>
+            <h3 class="summaryText"><span id="theSummary"></span></h3>
+            <p><span id="summary"></span></p>
+        </form>
+    </div>
+    <div class="footer">
+        <footer>
+            <p style="font-family: Fredoka, sans-serif;"></p>
+        </footer>
+    </div>
+
+    <script>
+        function form_handler(event) {
+            event.preventDefault();
+        }
+
+        function sendData() {
+            document.querySelector('form').addEventListener("submit", form_handler);
+
+            var fd = new FormData(document.querySelector('form'));
+
+            var xhr = new XMLHttpRequest({ mozSystem: true });
+            xhr.open('POST', '/', true);
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == XMLHttpRequest.DONE) {
+                    if (xhr.responseText == "StringERR") {
+                        document.getElementById('theSummary').innerHTML = ""
+                        document.getElementById('summary').innerHTML = "";
+                        alert("Please enter sentence having at least 10 words")
+
+                    } else if (xhr.responseText == "ConverstionERR") {
+                        document.getElementById('theSummary').innerHTML = ""
+                        document.getElementById('summary').innerHTML = "";
+                        alert("Unable to convert given string")
+
+                    }
+                    else {
+                        var text = document.getElementById("txt_input").value;
+                        var numWords = 0;
+                        for (var i = 0; i < text.length; i++) {
+                            var currentCharacter = text[i];
+                            if (currentCharacter == " ") {
+                                numWords += 1;
+                            }
+                        }
+
+                        numWords += 1;
+                        document.getElementById('theSummary').innerHTML = "The Summary";
+                        document.getElementById('summary').innerHTML = xhr.responseText + "<br><br>Total Words: " + xhr.responseText.split(" ").length + "<br><br>Original count of words: " + numWords;
+                    }
+                }
+            };
+
+            xhr.onload = function () { };
+
+            xhr.send(fd);
+        }
+
+    </script>
+
+</body>
+
+</html>
